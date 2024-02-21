@@ -2,12 +2,16 @@
 {
     public class Customer
     {
-        public Customer(string firstName, string lastName, Car? rentedCar = null)
+        public Customer(CustomerId id, string firstName, string lastName, DateOnly dayOfBirth, Car? rentedCar = null)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            RentedCar = rentedCar;
+            this.Id = id;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.DayOfBirth = dayOfBirth;
+            this.RentedCar = rentedCar;
         }
+        
+        public CustomerId Id { get; }
 
         public string FirstName { get; }
         
@@ -15,9 +19,11 @@
 
         public string FullName => $"{this.FirstName} {this.LastName}";
         
+        public DateOnly DayOfBirth { get; }
+        
         public Car? RentedCar { get; }
 
-        public Customer RentCar(Car car) => new(this.FirstName, this.LastName, car.Rent());
+        public Customer RentCar(Car car) => new(this.Id, this.FirstName, this.LastName, this.DayOfBirth, car.Rent());
 
         public Customer ReturnCar()
         {
@@ -27,7 +33,7 @@
             }
 
             this.RentedCar.Return();
-            return new Customer(this.FirstName, this.LastName);
+            return new Customer(this.Id, this.FirstName, this.LastName, this.DayOfBirth);
         }
     }
 }
