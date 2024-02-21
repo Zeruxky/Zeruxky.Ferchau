@@ -1,5 +1,6 @@
-﻿namespace Zeruxky.Ferchau.Application;
-
-public class Class1
+﻿namespace Zeruxky.Ferchau.Application
 {
+    public class Class1
+    {
+    }
 }

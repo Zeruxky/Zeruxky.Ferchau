@@ -1,5 +1,6 @@
-﻿namespace Zeruxky.Ferchau.Persistence;
-
-public class Class1
+﻿namespace Zeruxky.Ferchau.Persistence
 {
+    public class Class1
+    {
+    }
 }
