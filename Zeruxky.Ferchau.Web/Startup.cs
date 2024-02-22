@@ -1,10 +1,13 @@
 namespace Zeruxky.Ferchau.Web
 {
+    using FastEndpoints;
+    using FastEndpoints.Swagger;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Zeruxky.Ferchau.Web.OpenApi;
 
     public class Startup
     {
@@ -17,6 +20,7 @@ namespace Zeruxky.Ferchau.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOpenApi();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }
@@ -25,13 +29,22 @@ namespace Zeruxky.Ferchau.Web
         {
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            app.UseSwaggerGen();
+
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseEndpoints(
+                builder =>
+                {
+                    builder.MapFastEndpoints();
+                    builder.MapSwagger();
+                });
         }
     }
 }
