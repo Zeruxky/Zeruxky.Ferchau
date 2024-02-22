@@ -29,7 +29,7 @@
                 .ConfigureServices(
                     (context, services) =>
                     {
-                        services.AddPersistence(context.Configuration);
+                        services.AddPersistence();
                         services.AddApplication();
                     });
     }

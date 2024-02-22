@@ -1,6 +1,6 @@
 ﻿namespace Zeruxky.Ferchau.Persistence
 {
-    internal record CustomerDto
+    public record CustomerDto
     {
         public Guid Id { get; set; }
         
@@ -10,6 +10,10 @@
         
         public DateOnly DayOfBirth { get; set; }
         
+        public Guid RentedCarId { get; set; }
+        
         public CarDto? RentedCar { get; set; }
+
+        public IEnumerable<CarRentalEntryDto> RentalEntries { get; set; } = Array.Empty<CarRentalEntryDto>();
     }
 }
